@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' import: blob: https://*.intel.com; connect-src 'self' https://*.intel.com" />
+<script type="text/javascript">
+window.INTELNAV = window.INTELNAV || {};
+
+window.INTELNAV.dashboard = {
+	environment: "newnav",
+	languageSelector: {
+		settings: {
+			behavior: "", method: "parameter", regex: /language\=(\w\w_\w\w|\w\w)/
+		},
+		geos: [
+			{geo: "zh_cn", path: "language=zh_CN" },
+			{geo: "en_au", path: "language=en_AU" },
+			{geo: "en_ca", path: "language=en_CA" },
+			{geo: "en_ie", path: "language=en_IE" },
+			{geo: "en_in", path: "language=en_IN" },
+			{geo: "en_us", path: "language=en_US" },
+			{geo: "en_uk", path: "language=en_GB" },
+			{geo: "en_xa", path: "language=en_HK" },
+			{geo: "ja_jp", path: "language=ja" },
+		]
+	}
+};
+
+window.INTELNAV.renderSettings = {version: "2.0 - 03/12/2017 08:00:00", textDirection: "ltr", culture: "en_US", OutputId: "default"};
+window.INTELNAV.renderSettingsFooter = {version: "2.0 - 03/12/2017 08:00:00", OutputId: "gf_default"};
+	
+	
+function testSignOn() {
+    var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+		   console.log('Mike Worked');
+		} else {
+			console.log('Mike Status', this.readyState, this.status);
+		}
+	};
+	xhttp.open("POST", "https://wcm-stg.intel.com/libs/apps/intel/login.json/securitytoken", true);
+	xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+	xhttp.setRequestHeader("Sec-Fetch-Site", "cross-site");
+	xhttp.send("userid=test&password=test&ighf=ighf");
+}
+</script>
+<!--<script type="text/javascript" src="https://www.intel.com/ighf/50recode.2/js/headerchooser.js" ASYNC></script>-->
+<!--<script type="text/javascript" src="https://ighf-staging.intel.com/ighf/50recode.2/js/headerchooser.js" ASYNC></script>-->
+<body>
+	<div id="recode50header" class="no-animate"></div>
+	<button onclick="testSignOn()">Test Sign On</button>
+	<div id="recode50footer"></div>
+</body>
+</head>
+</html>
