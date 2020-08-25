@@ -28,16 +28,16 @@ window.INTELNAV.renderSettings = {version: "2.0 - 03/12/2017 08:00:00", textDire
 window.INTELNAV.renderSettingsFooter = {version: "2.0 - 03/12/2017 08:00:00", OutputId: "gf_default"};
 	
 	
-function testSignOn() {
+function testSignOn(url) {
     var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-		   console.log('Mike Worked');
+		   console.log('Worked');
 		} else {
-			console.log('Mike Status', this.readyState, this.status);
+			console.log('Status', this.readyState, this.status);
 		}
 	};
-	xhttp.open("POST", "https://wcm-stg.intel.com/libs/apps/intel/login.json/securitytoken", true);
+	xhttp.open("POST", url, true);
 	xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
 	xhttp.setRequestHeader("Sec-Fetch-Site", "cross-site");
 	xhttp.send("userid=test&password=test&ighf=ighf");
@@ -47,7 +47,8 @@ function testSignOn() {
 <!--<script type="text/javascript" src="https://ighf-staging.intel.com/ighf/50recode.2/js/headerchooser.js" ASYNC></script>-->
 <body>
 	<div id="recode50header" class="no-animate"></div>
-	<button onclick="testSignOn()">Test Sign On</button>
+	<button onclick="testSignOn('https://wcm-stg.intel.com/libs/apps/intel/login.json/securitytoken')">Test Sign On Staging</button>
+	<button onclick="testSignOn('https://www.intel.com/libs/apps/intel/login.json/securitytoken')">Test Sign On Prod</button>
 	<div id="recode50footer"></div>
 </body>
 </head>
